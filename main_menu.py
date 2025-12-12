@@ -12,6 +12,7 @@ import subprocess
 from Probleme10.JobShopWindow import MainWindow as JobShopWindow
 from Probleme12.topology_ui import MainWindow as CapacityNetworkWindow
 from Probleme11 import BinPackingWindow
+from Probleme13 import CrewAssignmentWindow
 from Probleme14.main import MainWindow as MinCostFlowWindow
 
 
@@ -22,6 +23,7 @@ class MainMenuWindow(QMainWindow):
         self.jobshop_window = None  # on stockera ici la fenêtre du problème 10
         self.capacity_network_window = None  # on stockera ici la fenêtre du problème 12
         self.bin_packing_window = None  # on stockera ici la fenêtre du problème 11
+        self.crew_assignment_window = None  # on stockera ici la fenêtre du problème 13
         self.min_cost_flow_window = None  # on stockera ici la fenêtre du problème 14
         #Initiliasation de ma fenetre principale
         self.setWindowTitle("Menu commun - Problèmes 10 à 14, Application 5 (Énergie)")
@@ -175,7 +177,7 @@ class MainMenuWindow(QMainWindow):
 
 
     def open_problem_11(self):
-        """Ouvre la fenêtre du problème 11 (Bin Packing - Énergie)."""
+        """Ouvre la fenêtre du problème 11 (Bin Packing – Énergie)."""
         if self.bin_packing_window is None:
             # On crée la fenêtre une seule fois
             self.bin_packing_window = BinPackingWindow()
@@ -197,8 +199,15 @@ class MainMenuWindow(QMainWindow):
         self.capacity_network_window.activateWindow()
 
     def open_problem_13(self):
-        print("Ouvrir le projet 13 : Problème d'Optimisation d'Appariement des Équipages Aériens")
-        subprocess.Popen([sys.executable, "Probleme13/main.py"])
+        """Ouvre la fenêtre du problème 13 (Affectation d'Équipage)."""
+        if self.crew_assignment_window is None:
+            # On crée la fenêtre une seule fois
+            self.crew_assignment_window = CrewAssignmentWindow()
+
+        # On affiche la fenêtre
+        self.crew_assignment_window.show()
+        self.crew_assignment_window.raise_()
+        self.crew_assignment_window.activateWindow()
 
 
     def open_problem_14(self):
