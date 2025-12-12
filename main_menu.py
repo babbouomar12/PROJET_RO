@@ -11,7 +11,8 @@ import subprocess
 # On importe les fenêtres des projets
 from Probleme10.JobShopWindow import MainWindow as JobShopWindow
 from Probleme12.topology_ui import MainWindow as CapacityNetworkWindow
-from Probleme11.main import MainWindow as BinPackingWindow
+from Probleme11 import BinPackingWindow
+from Probleme14.main import MainWindow as MinCostFlowWindow
 
 
 class MainMenuWindow(QMainWindow):
@@ -20,6 +21,8 @@ class MainMenuWindow(QMainWindow):
 
         self.jobshop_window = None  # on stockera ici la fenêtre du problème 10
         self.capacity_network_window = None  # on stockera ici la fenêtre du problème 12
+        self.bin_packing_window = None  # on stockera ici la fenêtre du problème 11
+        self.min_cost_flow_window = None  # on stockera ici la fenêtre du problème 14
         #Initiliasation de ma fenetre principale
         self.setWindowTitle("Menu commun - Problèmes 10 à 14, Application 5 (Énergie)")
         self.resize(1300, 700)
@@ -172,15 +175,15 @@ class MainMenuWindow(QMainWindow):
 
 
     def open_problem_11(self):
-        """Ouvre la fenêtre du problème 11"""
-        if self.BinPackingWindow is None:
+        """Ouvre la fenêtre du problème 11 (Bin Packing - Énergie)."""
+        if self.bin_packing_window is None:
             # On crée la fenêtre une seule fois
-            self.BinPackingWindow = BinPackingWindow()
+            self.bin_packing_window = BinPackingWindow()
 
         # On affiche la fenêtre
-        self.BinPackingWindow.show()
-        self.BinPackingWindow.raise_()
-        self.BinPackingWindow.activateWindow()
+        self.bin_packing_window.show()
+        self.bin_packing_window.raise_()
+        self.bin_packing_window.activateWindow()
 
     def open_problem_12(self):
         """Ouvre la fenêtre du problème 12 (Capacité de Réseau – Énergie)."""
@@ -199,7 +202,15 @@ class MainMenuWindow(QMainWindow):
 
 
     def open_problem_14(self):
-        print("Ouvrir le projet 14 : Flux à Coût Minimum – Énergie")
+        """Ouvre la fenêtre du problème 14 (Flux à Coût Minimum – Énergie)."""
+        if self.min_cost_flow_window is None:
+            # On crée la fenêtre une seule fois
+            self.min_cost_flow_window = MinCostFlowWindow()
+
+        # On affiche la fenêtre
+        self.min_cost_flow_window.show()
+        self.min_cost_flow_window.raise_()
+        self.min_cost_flow_window.activateWindow()
 
 
 def main():
