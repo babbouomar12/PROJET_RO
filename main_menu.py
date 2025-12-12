@@ -5,11 +5,13 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
+import subprocess
 
 
 # On importe les fenêtres des projets
 from Probleme10.JobShopWindow import MainWindow as JobShopWindow
-from Probleme12.topology_ui import MainWindow as CapacityNetworkWindow 
+from Probleme12.topology_ui import MainWindow as CapacityNetworkWindow
+from Probleme11.main import MainWindow as BinPackingWindow
 
 
 class MainMenuWindow(QMainWindow):
@@ -70,7 +72,7 @@ class MainMenuWindow(QMainWindow):
             ""
         )
         btn13 = self.create_problem_button(
-            "13. Couplage Maximum – Énergie : Appariement optimal (par exemple, liaisons, connexions)",
+            "13. Problème d'Optimisation d'Appariement des Équipages Aériens",
             ""
         )
         btn14 = self.create_problem_button(
@@ -170,7 +172,15 @@ class MainMenuWindow(QMainWindow):
 
 
     def open_problem_11(self):
-        print("Ouvrir le projet 11 : Stockage / Emballage – Énergie")
+        """Ouvre la fenêtre du problème 11"""
+        if self.BinPackingWindow is None:
+            # On crée la fenêtre une seule fois
+            self.BinPackingWindow = BinPackingWindow()
+
+        # On affiche la fenêtre
+        self.BinPackingWindow.show()
+        self.BinPackingWindow.raise_()
+        self.BinPackingWindow.activateWindow()
 
     def open_problem_12(self):
         """Ouvre la fenêtre du problème 12 (Capacité de Réseau – Énergie)."""
@@ -184,7 +194,9 @@ class MainMenuWindow(QMainWindow):
         self.capacity_network_window.activateWindow()
 
     def open_problem_13(self):
-        print("Ouvrir le projet 13 : Couplage Maximum – Énergie")
+        print("Ouvrir le projet 13 : Problème d'Optimisation d'Appariement des Équipages Aériens")
+        subprocess.Popen([sys.executable, "Probleme13/main.py"])
+
 
     def open_problem_14(self):
         print("Ouvrir le projet 14 : Flux à Coût Minimum – Énergie")
